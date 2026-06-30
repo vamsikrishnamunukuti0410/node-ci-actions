@@ -1,0 +1,14 @@
+name: print-name
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  first-job:
+    runs-on:  ubuntu-latest
+    
+    steps:
+      - name: checkout
+        run: echo "first job is success"
+
