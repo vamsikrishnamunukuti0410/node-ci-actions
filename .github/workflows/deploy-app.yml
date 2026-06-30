@@ -2,17 +2,23 @@ name: deploy-app
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - feature-deploy
 
 jobs:
-  first-job:
+  build-and-test:
     runs-on:  ubuntu-latest
     
     steps:
-      - name: deployment
-        run: echo "Deploying app..."
+      - name: checkout
+        uses: actions/check@v3
 
-# Updating workflow
+      - name: set up node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: install dependencies
+        run: npm install
+
+      - name: Run test script
+        run: npm test
